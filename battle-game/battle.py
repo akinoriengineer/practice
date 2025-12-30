@@ -8,6 +8,7 @@ Original file is located at
 """
 
 import random
+import time
 
 player_hp = 10
 enemy_hp = 10
@@ -15,6 +16,7 @@ enemy_hp = 10
 def player_attack(enemy_hp):
     damage = random.randint(1, 10)
     print("プレイヤーの攻撃！")
+    time.sleep(1)
     enemy_hp -= damage
     print(f"{damage}のダメージ！")
     return enemy_hp
@@ -22,6 +24,7 @@ def player_attack(enemy_hp):
 def player_heal(player_hp):
     heal = random.randint(1, 5)
     print("プレイヤーは回復！")
+    time.sleep(1)
     player_hp += heal
     print(f"{heal}回復した！")
     return player_hp
@@ -29,6 +32,7 @@ def player_heal(player_hp):
 def enemy_attack(player_hp):
     damage = random.randint(1, 10)
     print("CPUの攻撃！")
+    time.sleep(1)
     player_hp -= damage
     print(f"{damage}のダメージ！")
     return player_hp
@@ -36,6 +40,7 @@ def enemy_attack(player_hp):
 def enemy_heal(enemy_hp):
     heal = random.randint(1, 5)
     print("CPUは回復！")
+    time.sleep(1)
     enemy_hp += heal
     print(f"{heal}回復した！")
     return enemy_hp
@@ -50,7 +55,9 @@ while enemy_hp > 0 and player_hp > 0:
         enemy_hp = player_attack(enemy_hp)
     elif battle_option == 2:
         player_hp = player_heal(player_hp)
-
+    else:
+        print("1か2を選択してください")
+        continue
 
     if enemy_hp <= 0:
         break
@@ -62,6 +69,7 @@ while enemy_hp > 0 and player_hp > 0:
         player_hp = enemy_attack(player_hp)
     else:
         enemy_hp = enemy_heal(enemy_hp)
+
 
 print("\n------")
 if player_hp <= 0:
